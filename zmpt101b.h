@@ -18,6 +18,7 @@ class ZMPT101BSensor : public sensor::Sensor, public PollingComponent {
     // After the base sensor has been initialized
     return setup_priority::DATA - 1.0f;
   }
+  void set_pin(uint8_t pin) { this->pin_ = pin; }
 
  protected:
 
@@ -27,6 +28,7 @@ class ZMPT101BSensor : public sensor::Sensor, public PollingComponent {
   /// Calibrate offset value once at boot
   bool is_calibrating_offset_ = false;
   EnergyMonitor emon1;             // Create an instance
+  uint8_t pin_;
 };
 
 }  // namespace zmpt101b
