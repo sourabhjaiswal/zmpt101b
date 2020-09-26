@@ -4,12 +4,11 @@
 #include "esphome/core/esphal.h"
 #include "esphome/components/sensor/sensor.h"
 #include "EmonLib.h"
-#include "EmonLib.cpp"
 
 namespace esphome {
 namespace zmpt101b {
 
-class CTClampSensor : public sensor::Sensor, public PollingComponent {
+class ZMPT101BSensor : public sensor::Sensor, public PollingComponent {
  public:
   void setup() override;
   void update() override;
@@ -22,8 +21,8 @@ class CTClampSensor : public sensor::Sensor, public PollingComponent {
 
  protected:
 
-  float phase_shift = 1.7f;
-  float calibration = 84f;
+  float phase_shift = 1.7;
+  float calibration = 84;
   uint32_t num_samples_ = 2000;
   /// Calibrate offset value once at boot
   bool is_calibrating_offset_ = false;

@@ -11,7 +11,6 @@ static const char *TAG = "zmpt101b";
 void ZMPT101BSensor::setup() {
 
 	this->emon1.voltage(34,this->calibration,this->phase_shift);
-  });
 }
 
 void ZMPT101BSensor::dump_config() {
