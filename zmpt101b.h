@@ -20,12 +20,14 @@ class ZMPT101BSensor : public sensor::Sensor, public PollingComponent {
   }
   void set_pin(uint8_t pin) { this->pin_ = pin; }
   void set_conf_calibration(float calibration) { this->calibration_ = calibration; }
+  void set_conf_timeout(uint32_t timeout) { this->timeout_ = timeout; }
+  void set_conf_phase_shift(float phase_shift) { this->phase_shift_ = phase_shift; }
 
  protected:
 
-  float phase_shift = 1.7;
+  float phase_shift_;
   float calibration_;
-  uint32_t num_samples_ = 2000;
+  uint32_t timeout_;
   EnergyMonitor emon1;             // Create an instance
   uint8_t pin_;
 };
