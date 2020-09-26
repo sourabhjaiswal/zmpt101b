@@ -19,14 +19,13 @@ class ZMPT101BSensor : public sensor::Sensor, public PollingComponent {
     return setup_priority::DATA - 1.0f;
   }
   void set_pin(uint8_t pin) { this->pin_ = pin; }
+  void set_conf_calibration(float calibration) { this->calibration_ = calibration; }
 
  protected:
 
   float phase_shift = 1.7;
-  float calibration = 84;
+  float calibration_;
   uint32_t num_samples_ = 2000;
-  /// Calibrate offset value once at boot
-  bool is_calibrating_offset_ = false;
   EnergyMonitor emon1;             // Create an instance
   uint8_t pin_;
 };
