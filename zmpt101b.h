@@ -3,8 +3,8 @@
 #include "esphome/core/component.h"
 #include "esphome/core/esphal.h"
 #include "esphome/components/sensor/sensor.h"
-#include "esphome/EmonLib.h"
-#include "esphome/EmonLib.cpp"
+#include "EmonLib.h"
+#include "EmonLib.cpp"
 
 namespace esphome {
 namespace zmpt101b {
