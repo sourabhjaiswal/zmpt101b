@@ -10,7 +10,7 @@ ZMPT101BSensor = zmpt101b_ns.class_('ZMPT101BSensor', sensor.Sensor, cg.PollingC
 
 CONFIG_SCHEMA = sensor.sensor_schema(UNIT_VOLT, ICON_FLASH, 2).extend({
     cv.GenerateID(): cv.declare_id(ZMPT101BSensor),
-    cv.add_library('EmonLib', '1.1.0'),
+    cv.add_library('EmonLib', '1.1.0')
 }).extend(cv.polling_component_schema('60s'))
 
 
