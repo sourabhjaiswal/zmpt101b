@@ -1,4 +1,4 @@
-#include "zmpt101b_sensor.h"
+#include "zmpt101b.h"
 
 #include "esphome/core/log.h"
 #include <cmath>
