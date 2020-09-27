@@ -31,7 +31,6 @@ void ZMPT101BSensor::update() {
         }
     
         float sampled_voltage = this->sample_sum_ / this->num_samples_;
-        //ESP_LOGD(TAG, "'%s' - Raw Value: %.2fA", this->name_.c_str(), irms);
         this->publish_state(sampled_voltage);
       });
 
