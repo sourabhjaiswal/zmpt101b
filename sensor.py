@@ -9,6 +9,11 @@ CODEOWNERS = ['@sourabhjaiswal']
 CONF_PHASE_SHIFT = 'phase_shift'
 CONF_NUMBER_OF_SAMPLES = 'num_of_samples'
 
+FREQUENCY_OPTIONS = {
+    '50hz': 50,
+    '60hz': 60,
+}
+
 def validate_adc_pin(value):
     vcc = str(value).upper()
     if vcc == 'VCC':
@@ -24,7 +29,7 @@ CONFIG_SCHEMA = sensor.sensor_schema(UNIT_VOLT, ICON_FLASH, 2).extend({
     cv.Required(CONF_PIN): validate_adc_pin,
     cv.Optional(CONF_CALIBRATION, default=84): cv.float_,
     cv.Optional(CONF_NUMBER_OF_SAMPLES, default='20'): cv.int_,
-    cv.Optional(CONF_FREQUENCY, default=50): cv.int_,
+    cv.Optional(CONF_FREQUENCY, default='50hz'): cv.enum(FREQUENCY_OPTIONS),
     cv.Optional(CONF_PHASE_SHIFT, default=1.7): cv.float_,
 }).extend(cv.polling_component_schema('60s'))
 
