@@ -18,7 +18,8 @@ def validate_adc_pin(value):
     vcc = str(value).upper()
     if vcc == 'VCC':
         return cv.only_on_esp8266(vcc)
-    return pins.analog_pin(value)
+    return pins.internal_gpio_input_pin_schema(value)
+
 
 
 zmpt101b_ns = cg.esphome_ns.namespace('zmpt101b')
@@ -34,12 +35,13 @@ CONFIG_SCHEMA = sensor.sensor_schema(UNIT_VOLT, ICON_PULSE, 2).extend({
 }).extend(cv.polling_component_schema('60s'))
 
 
-def to_code(config):
+async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
-    yield cg.register_component(var, config)
-    yield sensor.register_sensor(var, config)
-    cg.add_library('EmonLib', '1.1.0')
-    cg.add(var.set_pin(config[CONF_PIN]))
+    await cg.register_component(var, config)
+    await sensor.register_sensor(var, config)
+    cg.add_library('EmonLib', None)
+    pin = await cg.gpio_pin_expression(config[CONF_PIN])
+    cg.add(var.set_pin(pin))
     cg.add(var.set_conf_calibration(config[CONF_CALIBRATION]))
     cg.add(var.set_conf_number_of_samples(config[CONF_NUMBER_OF_SAMPLES]))
     cg.add(var.set_conf_frequency(config[CONF_FREQUENCY]))

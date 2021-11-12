@@ -9,8 +9,8 @@ namespace zmpt101b {
 static const char *TAG = "zmpt101b";
 
 void ZMPT101BSensor::setup() {
-    GPIOPin(this->pin_, INPUT).setup();
-	this->emon1.voltage(this->pin_,this->calibration_,this->phase_shift_);
+  this->pin_->setup();
+	this->emon1.voltage((unsigned int)this->pin_,this->calibration_,this->phase_shift_);
 }
 
 void ZMPT101BSensor::dump_config() {
